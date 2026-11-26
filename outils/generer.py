@@ -320,11 +320,9 @@ def page_accueil():
 </div>
 
 <!-- ===== MANIFESTE ===== -->
-<section class="statement statement--couleur" id="manifeste">
-  <img class="statement__bg" src="assets/img/ags/equipe.webp" alt="L’équipe terrain d’{NOM}" loading="lazy" style="object-position: 50% 28%">
-  <p class="statement__legende">L’équipe terrain d’{NOM} · {VILLE}</p>
+<section class="statement" id="manifeste">
+  <img class="statement__bg" src="assets/img/ags/siege-facade.webp" alt="" loading="lazy" style="object-position: 50% 55%">
   <div class="wrap statement__inner">
-    <h2 class="cv__h2 statement__label">Notre équipe</h2>
     <p class="display statement__text" data-reveal>
       Du terrain nu à l’antenne qui émet&nbsp;: une seule équipe, sur le terrain, à chaque étape de vos sites télécoms.
     </p>
