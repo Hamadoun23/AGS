@@ -101,6 +101,31 @@ SERVICES = [
 ]
 
 # ---------------------------------------------------------------------------
+# Équipe dirigeante (section après « Le mot du dirigeant »)
+# ---------------------------------------------------------------------------
+EQUIPE = [
+    dict(nom='M. Diouf', role='Manager', photo='assets/img/ags/diouf.webp',
+         texte='Il dirige l’entreprise : relations avec les opérateurs et les partenaires, suivi des contrats '
+               'et pilotage de l’ensemble des activités.'),
+    dict(nom='Samba Sidibé', role='Responsable des opérations', photo='assets/img/ags/sidibe.webp',
+         texte='Il organise le travail sur le terrain : planification des interventions, coordination des '
+               'équipes techniques et respect des règles de sécurité.'),
+]
+
+
+def personne(p):
+    return f'''
+      <article class="personne">
+        <div class="personne__photo">{image(p["photo"], alt=f'{p["nom"]}, {p["role"]} d’{NOM}')}</div>
+        <div class="personne__texte">
+          <p class="personne__role">{p["role"]}</p>
+          <h3 class="display personne__nom">{p["nom"]}</h3>
+          <p>{p["texte"]}</p>
+        </div>
+      </article>'''
+
+
+# ---------------------------------------------------------------------------
 # Gabarits communs
 # ---------------------------------------------------------------------------
 ICO_WA = ('<svg class="ico-wa" viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.2.6 4.4 1.7 6.3L3.2 28.8l7.1-1.8c1.8 1 3.8 1.5 5.8 1.5 7 0 12.7-5.7 12.7-12.6S23 3 16 3zm0 23.2c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.2 1.1 1.1-4.1-.3-.4a10.4 10.4 0 0 1-1.6-5.5C5.2 9.8 10 5.1 16 5.1s10.7 4.7 10.7 10.5S21.9 26.2 16 26.2zm5.9-7.8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.6 8.6 0 0 1-4.3-3.7c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.6 5.8 5 2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5 0-.1-.2-.2-.5-.4z"/></svg>\n')
@@ -336,6 +361,17 @@ def page_accueil():
       <p>Derrière chaque appel passé et chaque connexion internet, il y a un pylône monté, une fondation coulée, un technicien qui intervient. Notre ambition est de faire ce travail avec sérieux et dans les règles, pour que les Maliens restent connectés, et de former une nouvelle génération de techniciens télécoms dans notre pays.</p>
       <p class="mot__signature">La Direction générale</p>
     </div>
+  </div>
+</section>
+
+<!-- ===== L'ÉQUIPE DIRIGEANTE ===== -->
+<section class="sec light equipe" id="equipe">
+  <div class="wrap">
+    <div class="sec__head">
+      <h2 class="display sec__title sec__title--m" data-blur>L’équipe dirigeante</h2>
+      <p class="small">Deux responsables, un même objectif&nbsp;: des chantiers bien menés et des sites qui fonctionnent.</p>
+    </div>
+    <div class="equipe__grille">{''.join(personne(p) for p in EQUIPE)}</div>
   </div>
 </section>
 
