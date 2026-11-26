@@ -246,3 +246,12 @@
 /* Mot de la direction : la photo est retirée, son emplacement reste vide (ordinateur seulement) */
 .mot__vide { display: none; }
 @media (min-width: 960px) { .mot__vide { display: block; aspect-ratio: 4 / 5; } }
+
+/* Manifeste : vraie photo de l'équipe en couleur, dégradé sombre côté texte pour la lisibilité */
+.statement--couleur .statement__bg { filter: none; }
+.statement--couleur::after { background:
+  linear-gradient(90deg, rgba(20,20,20,.88) 0%, rgba(20,20,20,.62) 42%, rgba(20,20,20,.15) 100%),
+  linear-gradient(0deg, rgba(20,20,20,.55), rgba(20,20,20,0) 40%); }
+@media (max-width: 959px) {
+  .statement--couleur::after { background: linear-gradient(0deg, rgba(20,20,20,.9) 0%, rgba(20,20,20,.68) 50%, rgba(20,20,20,.4) 100%); }
+}
