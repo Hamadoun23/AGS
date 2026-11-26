@@ -249,13 +249,26 @@
 
 /* Manifeste : vraie photo de l'équipe en couleur.
    La photo d'origine est petite (810 px de large) : sur ordinateur elle occupe la moitié droite
-   (affichée à sa taille réelle, donc nette) et se fond dans le fond sombre côté texte. */
+   (affichée à sa taille réelle, donc nette) et le texte reste dans la moitié gauche, sans la recouvrir. */
 .statement--couleur .statement__bg { filter: none; }
-.statement--couleur::after { background: linear-gradient(0deg, rgba(20,20,20,.9) 0%, rgba(20,20,20,.68) 50%, rgba(20,20,20,.4) 100%); }
+.statement--couleur::after { background: linear-gradient(0deg, rgba(20,20,20,.92) 0%, rgba(20,20,20,.7) 50%, rgba(20,20,20,.4) 100%); }
+.statement__label { margin: 0; }
+.statement__legende { display: none; }
+/* Téléphone/tablette : texte en bas, l'équipe reste visible au-dessus */
+@media (max-width: 959px) {
+  .statement--couleur { align-items: flex-end; }
+  .statement--couleur .statement__bg { object-position: 50% 15% !important; }
+  .statement--couleur .statement__inner { padding: 60px 0 56px; }
+  .statement--couleur::after { background: linear-gradient(0deg, rgba(20,20,20,.95) 0%, rgba(20,20,20,.8) 42%, rgba(20,20,20,.1) 72%); }
+}
 @media (min-width: 960px) {
   .statement--couleur { background: var(--char); }
-  .statement--couleur .statement__bg { left: auto; right: 0; width: 52%; object-position: 50% 30% !important; }
-  .statement--couleur::after { left: auto; right: 0; width: 52%;
-    background: linear-gradient(90deg, var(--char) 0%, rgba(30,30,30,.55) 22%, rgba(30,30,30,0) 50%),
-                linear-gradient(0deg, rgba(30,30,30,.5), rgba(30,30,30,0) 35%); }
+  .statement--couleur .statement__bg { left: auto; right: 0; width: 50%; object-position: 50% 30% !important; }
+  .statement--couleur::after { left: auto; right: 0; width: 50%;
+    background: linear-gradient(90deg, var(--char) 0%, rgba(30,30,30,.35) 16%, rgba(30,30,30,0) 34%),
+                linear-gradient(0deg, rgba(20,20,20,.55), rgba(20,20,20,0) 30%); }
+  .statement--couleur .statement__inner { gap: 28px; }
+  .statement--couleur .statement__text { max-width: 44%; font-size: clamp(1.6rem, 2.6vw, 2.5rem); line-height: 1.05; }
+  .statement__legende { display: block; position: absolute; z-index: 2; left: calc(50% + 7%); bottom: 24px; margin: 0;
+    padding: 6px 12px; border-radius: 4px; background: rgba(0,0,0,.55); font-size: .72rem; letter-spacing: .04em; color: rgba(255,255,255,.85); }
 }
