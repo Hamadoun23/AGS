@@ -354,7 +354,8 @@ def page_accueil():
 
 <!-- ===== MOT DE LA DIRECTION ===== -->
 <section class="sec">
-  <div class="wrap mot mot--seul">
+  <div class="wrap mot">
+    <div class="mot__vide" aria-hidden="true"></div>
     <div class="mot__texte">
       <h2 class="cv__h2">Le mot de la direction</h2>
       <blockquote class="display mot__citation">«&nbsp;Un réseau fiable commence sur le terrain.&nbsp;»</blockquote>
