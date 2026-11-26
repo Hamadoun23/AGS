@@ -1,0 +1,215 @@
+/* Groupe S-ComPlus — pages Activités, Le groupe, Vidéos (mobile d abord). Variables : style.css */
+
+/* ===== Menu court (ordinateur) ===== */
+.nav-court { display: none; }
+@media (min-width: 1100px) {
+  .nav-court { display: flex; gap: clamp(18px, 2vw, 30px); margin-left: auto; }
+  .nav-court a { position: relative; font-size: .85rem; text-decoration: none; padding: 6px 0; white-space: nowrap; }
+  .nav-court a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease); }
+  .nav-court a:hover::after, .nav-court a[aria-current]::after { transform: none; }
+}
+
+/* ===== Sections génériques ===== */
+.page .header { background: rgba(30,30,30,.92); backdrop-filter: blur(10px); }
+.sec { padding: clamp(80px, 11vw, 140px) 0; }
+.sec--top { padding-top: 130px; padding-bottom: 30px; }
+.sec__head { display: grid; gap: 16px; margin-bottom: clamp(28px, 4vw, 48px); }
+.sec__title { font-size: clamp(2.4rem, 8vw, 6rem); }
+.sec__title--m { font-size: clamp(1.8rem, 5vw, 3.4rem); }
+.sec__more { margin-top: 36px; }
+.vsec { padding-top: 40px; border-top: 1px solid var(--line); }
+.vide { padding: 50px 0; color: var(--dim); text-align: center; }
+.chips { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; margin-bottom: 30px; }
+.chips::-webkit-scrollbar { display: none; }
+.chip { flex: none; display: inline-flex; align-items: center; height: 34px; padding: 0 14px; border: 1px solid rgba(255,255,255,.25); border-radius: 2px; font-size: .78rem; text-decoration: none; transition: background .25s, color .25s; }
+.chip:hover { border-color: #fff; }
+.chip.is-on { background: #fff; color: #000; border-color: #fff; }
+@media (min-width: 960px) {
+  .sec__head { grid-template-columns: 1fr auto; align-items: end; }
+  .sec__head .small { max-width: 38ch; }
+}
+
+/* ===== Vidéos ===== */
+.vgrid { display: grid; gap: 22px; }
+.m { position: relative; margin: 0; }
+.m video, .m img, .m iframe { display: block; width: 100%; border-radius: 6px; background: #111; }
+.vcard video, .vcard .yt img, .vcard iframe { aspect-ratio: 16 / 9; object-fit: cover; height: auto; border: 0; }
+.vcard figcaption { display: grid; gap: 4px; margin-top: 10px; }
+.vcard figcaption b { font-size: .95rem; font-weight: 700; }
+.vcard figcaption span { font-size: .85rem; line-height: 1.45; color: rgba(255,255,255,.75); }
+.vcard figcaption a { font-size: .78rem; color: var(--dim); }
+.vcard figcaption a:hover { color: #fff; }
+.snd {
+  position: absolute; top: 10px; right: 10px; z-index: 2;
+  height: 30px; padding: 0 12px 0 28px; border-radius: 15px; border: 0; cursor: pointer;
+  background: rgba(0,0,0,.6); color: #fff; font-size: .72rem; backdrop-filter: blur(6px);
+}
+.snd::before { content: ""; position: absolute; left: 11px; top: 10px; width: 6px; height: 10px; background: currentColor; clip-path: polygon(0 30%, 40% 30%, 100% 0, 100% 100%, 40% 70%, 0 70%); }
+.snd::after { content: ""; position: absolute; left: 7px; top: 14px; width: 16px; height: 1.5px; background: currentColor; transform: rotate(-45deg); }
+.snd.is-on { background: #fff; color: #000; }
+.m video[data-auto]:not([controls]) { cursor: pointer; }
+.is-manuel .snd { display: none; }
+/* repère « Lire » sur les vidéos pas encore prises en main */
+.vcard:not(.is-manuel)::after { content: "▶ Lire avec le son"; position: absolute; left: 10px; top: 10px; padding: 5px 10px; border-radius: 14px; background: rgba(0,0,0,.6); font-size: .7rem; pointer-events: none; opacity: 0; transition: opacity .25s; }
+.vcard:not(.is-manuel):hover::after { opacity: 1; }
+.snd.is-on::after { display: none; }
+.yt { position: relative; display: block; width: 100%; padding: 0; border: 0; cursor: pointer; background: none; }
+.yt::after { content: ""; position: absolute; left: 50%; top: 50%; width: 56px; height: 56px; margin: -28px 0 0 -28px; border-radius: 50%; background: rgba(255,255,255,.92) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E") center / 26px no-repeat; }
+@media (min-width: 640px) { .vgrid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .vgrid { grid-template-columns: repeat(3, 1fr); } }
+
+
+/* ===== Image d'attente (tant que l'image IA n'est pas fournie) ===== */
+.ph {
+  position: relative; width: 100%; height: 100%; min-height: 100%;
+  background:
+    radial-gradient(70% 80% at 85% 90%, rgba(239,130,0,.38), transparent 65%),
+    radial-gradient(60% 70% at 10% 10%, rgba(120,60,30,.35), transparent 60%),
+    repeating-linear-gradient(135deg, rgba(255,255,255,.025) 0 2px, transparent 2px 14px),
+    #2A2724;
+}
+.ph__nom { position: absolute; left: 12px; bottom: 10px; padding: 4px 9px; border-radius: 4px; background: rgba(0,0,0,.55); font: 500 .68rem/1.3 var(--font); color: rgba(255,255,255,.85); }
+.hero__slide .ph, .statement .ph.statement__bg { position: absolute; inset: 0; }
+.statement .ph.statement__bg { filter: none; }
+.ready__img .ph { min-height: 360px; }
+.hero__slide .ph__nom { bottom: auto; top: 90px; }
+
+/* ===== Petit titre de bloc (trait ocre) ===== */
+.cv__h2 { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.cv__h2::before { content: ""; width: 18px; height: 2px; background: var(--gold); }
+
+/* ===== Menu plein écran : liste des activités ===== */
+.menu__cols { display: grid; gap: 32px; }
+.menu__activites { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.menu__activites a { font-size: .9rem; text-decoration: none; color: var(--dim); transition: color .2s; }
+.menu__activites a:hover { color: #fff; }
+@media (min-width: 960px) {
+  .menu__cols { grid-template-columns: 1fr 260px; align-items: end; }
+  .menu__activites { flex-direction: column; gap: 10px; }
+}
+
+/* ===== Cartes des activités ===== */
+.agrid { display: grid; gap: 10px; }
+.acard { position: relative; display: block; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 10px; text-decoration: none; background: var(--char-2); isolation: isolate; }
+.acard__img, .acard__img > * { position: absolute; inset: 0; width: 100%; height: 100%; }
+.acard__img img { object-fit: cover; transition: transform .9s var(--ease); }
+.acard:hover .acard__img img { transform: scale(1.05); }
+.acard::after { content: ""; position: absolute; inset: 0; z-index: 0; background: linear-gradient(0deg, rgba(0,0,0,.82), rgba(0,0,0,.05) 65%); }
+.acard__body { position: absolute; left: 20px; right: 20px; bottom: 18px; padding-right: 34px; z-index: 1; display: grid; gap: 6px; }
+.acard__num { font-size: .72rem; font-weight: 600; letter-spacing: .12em; color: var(--gold); }
+.acard__body b { font: 800 clamp(1.25rem, 3.4vw, 1.7rem)/1 var(--font); font-stretch: 125%; text-transform: uppercase; }
+.acard__body > span:not(.acard__num) { font-size: .84rem; line-height: 1.4; color: rgba(255,255,255,.8); max-width: 38ch; }
+.acard__fleche { position: absolute; right: 0; bottom: 0; font-style: normal; font-size: 1.2rem; transition: transform .35s var(--ease); }
+.acard:hover .acard__fleche { transform: translateX(4px); }
+.acard .ph__nom { top: 10px; bottom: auto; }
+.agrid--petit .acard { aspect-ratio: 16 / 10; }
+.agrid--petit .acard__body > span:not(.acard__num) { display: none; }
+@media (min-width: 640px) { .agrid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) {
+  .agrid { grid-template-columns: repeat(6, 1fr); gap: 14px; }
+  .agrid .acard { grid-column: span 2; }
+  /* 7 activités : la première occupe une grande place, puis des rangées de trois */
+  .agrid:not(.agrid--petit) .acard:first-child { grid-column: span 4; grid-row: span 2; aspect-ratio: auto; }
+  /* une activité seule sur la dernière ligne : bandeau sur toute la largeur */
+  .agrid:not(.agrid--petit) .acard:nth-child(3n+1):last-child { grid-column: 1 / -1; aspect-ratio: 21 / 6; }
+  .agrid--petit { grid-template-columns: repeat(3, 1fr); }
+  .agrid--petit .acard { grid-column: auto; }
+}
+
+/* ===== Page d'une activité ===== */
+.ahero { position: relative; min-height: 78svh; display: flex; align-items: flex-end; overflow: hidden; }
+.ahero__img, .ahero__img > * { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ahero__img img { object-fit: cover; }
+.ahero__img .ph__nom { top: 90px; bottom: auto; }
+.ahero__content { position: relative; display: grid; gap: 14px; padding: 120px 0 40px; }
+.ahero__retour a { font-size: .82rem; color: var(--dim); text-decoration: none; }
+.ahero__retour a:hover { color: #fff; }
+.ahero__num { font-size: .78rem; font-weight: 600; letter-spacing: .14em; color: var(--gold); }
+.ahero__titre { font-size: clamp(2.4rem, 9vw, 7rem); }
+.ahero__accroche { font-size: clamp(1rem, 2vw, 1.3rem); max-width: 40ch; color: rgba(255,255,255,.88); }
+.adetail { display: grid; gap: 28px; }
+.adetail__texte p { font-size: 1rem; line-height: 1.7; color: rgba(255,255,255,.85); max-width: 62ch; margin-bottom: 1em; }
+.adetail__services { padding: 24px; border-radius: 10px; background: var(--char-2); align-self: start; }
+.adetail__services ul { list-style: none; padding: 0; margin: 0 0 24px; }
+.adetail__services li { display: flex; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--line); font-size: .92rem; }
+.adetail__services li::before { content: ""; flex: none; width: 7px; height: 7px; margin-top: .5em; background: var(--gold); transform: rotate(45deg); }
+.adetail__services .btn { width: 100%; }
+@media (min-width: 960px) { .adetail { grid-template-columns: 1.4fr 1fr; gap: 64px; } }
+
+/* ===== Valeurs (section claire) ===== */
+.valeurs { list-style: none; margin: 0 0 56px; padding: 0; display: grid; gap: 6px; }
+.valeurs li { padding: 28px 24px; border-radius: 10px; background: rgba(255,255,255,.55); }
+.valeurs span { font-size: .72rem; font-weight: 700; letter-spacing: .14em; color: #C46A00; }
+.valeurs h3 { font: 800 1.3rem/1 var(--font); font-stretch: 125%; text-transform: uppercase; margin: 14px 0 10px; }
+.valeurs p { font-size: .9rem; line-height: 1.5; color: rgba(20,20,20,.7); }
+@media (min-width: 640px) { .valeurs { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .valeurs { grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); } }
+
+/* ===== Filiale ===== */
+.filiale { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: linear-gradient(90deg, rgba(0,64,100,.55), rgba(0,64,100,0) 70%); }
+.filiale__inner { display: grid; gap: 22px; padding: 48px 0; }
+.filiale__tag { display: inline-block; padding: 3px 10px; border-radius: 12px; background: var(--gold); color: #141414; font-size: .64rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.filiale__titre { font-size: clamp(1.6rem, 4.5vw, 3rem); margin: 12px 0 8px; }
+.filiale p { font-size: .92rem; color: rgba(255,255,255,.8); max-width: 50ch; }
+@media (min-width: 960px) { .filiale__inner { grid-template-columns: 1fr auto; align-items: center; } }
+
+/* ===== Le groupe ===== */
+.bandeau-img { aspect-ratio: 16 / 9; max-height: 70vh; width: 100%; overflow: hidden; border-radius: 10px; }
+.bandeau-img > * { width: 100%; height: 100%; object-fit: cover; }
+.mot { display: grid; gap: 28px; align-items: center; }
+.mot__photo { aspect-ratio: 4 / 5; max-width: 420px; overflow: hidden; border-radius: 10px; }
+.mot__photo > * { width: 100%; height: 100%; object-fit: cover; }
+.mot__citation { margin: 0 0 22px; font-size: clamp(1.5rem, 3.6vw, 2.6rem); line-height: 1; }
+.mot__texte p { font-size: 1rem; line-height: 1.7; color: rgba(255,255,255,.85); max-width: 58ch; margin-bottom: 1em; }
+.mot__texte .mot__signature { font-size: .85rem; color: var(--gold); letter-spacing: .06em; text-transform: uppercase; }
+@media (min-width: 960px) { .mot { grid-template-columns: 360px 1fr; gap: 72px; } }
+.contact small { font-weight: 300; color: var(--dim); }
+
+/* ===== Mentions légales ===== */
+.texte-legal { max-width: 760px; }
+.texte-legal .sec__title { margin-bottom: 40px; }
+.texte-legal h2 { margin-top: 34px; }
+.texte-legal p { font-size: .95rem; line-height: 1.7; color: rgba(255,255,255,.82); margin-bottom: .8em; }
+.footer__copy a { color: inherit; }
+.about__text p + p { margin-top: 1em; }
+
+/* ===== Vitrine SC+ sur l'accueil du groupe ===== */
+.vitrine { padding-bottom: 56px; }
+.vitrine .filiale__inner { padding-bottom: 32px; }
+.vitrine__photo { position: relative; margin: 0; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 6px; }
+.vitrine__photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
+.vitrine__photo:hover img { transform: scale(1.04); }
+.vitrine__photo figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 30px 12px 10px; background: linear-gradient(0deg, rgba(0,0,0,.75), transparent); font-size: .78rem; }
+.vitrine__videos { margin-top: 36px; }
+.vitrine p.sec__more { max-width: none; }
+
+/* Logo en grand dans la bannière de l'accueil, tant que la photo de bannière n'est pas fournie */
+.hero__logo { position: absolute; z-index: 1; left: 50%; top: 18%; width: min(62vw, 300px); height: auto; transform: translateX(-50%); opacity: 0; transition: opacity 1.2s var(--ease) .6s; }
+.is-loaded .hero__logo { opacity: 1; }
+@media (min-width: 960px) {
+  .hero__logo { left: auto; right: 7%; top: 50%; width: min(34vw, 460px); transform: translateY(-58%); }
+}
+
+/* ===== Section « Le groupe » de l'accueil ===== */
+.groupe__texte { max-width: 70ch; margin: 0 auto 48px; }
+.groupe__texte p { font-size: clamp(1rem, 1.6vw, 1.15rem); line-height: 1.65; color: rgba(20,20,20,.78); text-align: center; }
+.groupe__texte p + p { margin-top: 1em; }
+.mot__photo .mot__embleme { object-fit: contain; padding: 14%; background: radial-gradient(70% 70% at 50% 50%, rgba(239,130,0,.18), transparent 70%), var(--char-2); }
+
+/* ===== Page SC+ Talent & Sports (page unique) ===== */
+.ahero__img picture img { width: 100%; height: 100%; object-fit: cover; object-position: 45% 40%; }
+.ahero__content .btns { margin-top: 10px; }
+.sous-titre { margin: 44px 0 16px; font-size: .78rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); scroll-margin-top: 100px; }
+.sous-titre:first-of-type { margin-top: 8px; }
+#joueurs, #videos, #agence, #groupe, #contact { scroll-margin-top: 70px; }
+
+/* Ordinateur : les liens sont dans l'en-tête, le bouton « Menu » ne sert plus (il reste sur mobile et tablette) */
+@media (min-width: 1100px) {
+  .menu-btn { display: none; }
+}
+
+/* Le bouton WhatsApp flottant ne doit pas recouvrir le bouton de la bannière */
+.hero__content { padding-bottom: 92px; }
+@media (min-width: 960px) { .hero__content { padding-bottom: 96px; } }
+/* Bannières des pages (activités, SC+) : voile plus marqué pour que le texte reste lisible sur les photos chargées */
+.ahero .hero__shade { background: linear-gradient(0deg, rgba(20,20,20,.94) 0%, rgba(20,20,20,.6) 50%, rgba(20,20,20,.3) 100%); }
