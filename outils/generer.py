@@ -294,8 +294,8 @@ def page_accueil():
 <!-- ===== BANNIÈRE ===== -->
 <section class="hero" id="accueil" aria-label="Présentation">
   <div class="hero__slides" aria-hidden="true">
-    <div class="hero__slide is-active"><img src="{banniere1}" alt="" fetchpriority="high"></div>
-    <div class="hero__slide" data-lazy><img data-src="{banniere2}" alt=""></div>
+    <div class="hero__slide is-active"><img src="{banniere1}" alt="" fetchpriority="high" style="object-position: 50% 40%"></div>
+    <div class="hero__slide" data-lazy><img data-src="{banniere2}" alt="" style="object-position: 84% 50%"></div>
   </div>
   <div class="hero__shade"></div>
   <div class="wrap hero__content">
