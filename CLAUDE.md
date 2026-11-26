@@ -14,8 +14,9 @@ lancer `python outils/generer.py`. Les photos/images se préparent avec `python 
 
 Fait : **site en page unique** (`index.html` + `mentions-legales.html`, plus de pages de services, choix du client le 26/11), grille réglée pour 5 cartes, textes AGS, photos de l'équipe
 (bannière provisoire, manifeste, bloc « projet »), logo texte et favicon provisoires, dépôt git local.
-Reste : vraies coordonnées (`À COMPLÉTER` dans `generer.py`), logo et couleurs AGS, nom complet, dirigeant,
-images IA des services, validation des textes par le client.
+Images Gemini intégrées (2 bannières + 5 services), section « L'équipe dirigeante » (M. Diouf, Samba Sidibé).
+Reste : vraies coordonnées (`À COMPLÉTER` dans `generer.py`), logo et couleurs AGS, nom complet, photo du mot du dirigeant,
+validation des textes par le client.
 
 ## Ce que fait AGS (texte fourni par l'utilisateur)
 
