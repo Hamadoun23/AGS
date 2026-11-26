@@ -352,12 +352,11 @@ def page_accueil():
   </div>
 </section>
 
-<!-- ===== MOT DU DIRIGEANT ===== -->
+<!-- ===== MOT DE LA DIRECTION ===== -->
 <section class="sec">
-  <div class="wrap mot">
-    <div class="mot__photo">{image('assets/img/ags/dirigeant.webp', nom_attente='Photo du dirigeant à venir')}</div>
+  <div class="wrap mot mot--seul">
     <div class="mot__texte">
-      <h2 class="cv__h2">Le mot du dirigeant</h2>
+      <h2 class="cv__h2">Le mot de la direction</h2>
       <blockquote class="display mot__citation">«&nbsp;Un réseau fiable commence sur le terrain.&nbsp;»</blockquote>
       <p>Derrière chaque appel passé et chaque connexion internet, il y a un pylône monté, une fondation coulée, un technicien qui intervient. Notre ambition est de faire ce travail avec sérieux et dans les règles, pour que les Maliens restent connectés, et de former une nouvelle génération de techniciens télécoms dans notre pays.</p>
       <p class="mot__signature">La Direction générale</p>
@@ -378,7 +377,7 @@ def page_accueil():
 
 <!-- ===== PROJET ===== -->
 <section class="ready">
-  <div class="ready__img"><img src="assets/img/ags/equipe-terrain-2.webp" alt="L’équipe terrain d’{NOM} en gilets orange devant le siège" loading="lazy" style="object-position: 50% 50%"></div>
+  <div class="ready__img"><img src="assets/img/ags/equipe.webp" alt="L’équipe terrain d’{NOM} en gilets orange et casques devant le siège" loading="lazy" style="object-position: 50% 40%"></div>
   <div class="ready__panel">
     <h2 class="display ready__title" data-blur>Un chantier en vue&nbsp;?</h2>
     <a class="btn btn--dark" href="#contact">Démarrer la conversation</a>

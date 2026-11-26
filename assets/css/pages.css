@@ -242,3 +242,9 @@
   .personne__photo img { object-position: 50% 20%; }
   .personne__texte { position: absolute; left: 36px; right: 36px; bottom: 34px; padding: 0; }
 }
+
+/* Mot du dirigeant sans photo : message seul, centré */
+.mot--seul { display: block; max-width: 820px; text-align: center; }
+.mot--seul .mot__texte p { margin-left: auto; margin-right: auto; }
+.mot--seul .cv__h2 { justify-content: center; }
+.mot--seul .cv__h2::after { content: ""; width: 18px; height: 2px; background: var(--gold); }

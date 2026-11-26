@@ -20,6 +20,7 @@ PHOTOS = {
     'WhatsApp Image 2026-11-26 at 11.11.50.jpeg': 'bureau-responsable-3',
     'WhatsApp Image 2026-11-26 at 11.11.51 (1).jpeg': 'equipe-terrain-2',
     'WhatsApp Image 2026-11-26 at 11.11.51.jpeg': 'equipe-terrain',
+    'TEAM.jpeg': 'equipe',
 }
 EXTENSIONS = {'.png', '.jpg', '.jpeg', '.jfif', '.webp'}
 
