@@ -247,11 +247,15 @@
 .mot__vide { display: none; }
 @media (min-width: 960px) { .mot__vide { display: block; aspect-ratio: 4 / 5; } }
 
-/* Manifeste : vraie photo de l'équipe en couleur, dégradé sombre côté texte pour la lisibilité */
+/* Manifeste : vraie photo de l'équipe en couleur.
+   La photo d'origine est petite (810 px de large) : sur ordinateur elle occupe la moitié droite
+   (affichée à sa taille réelle, donc nette) et se fond dans le fond sombre côté texte. */
 .statement--couleur .statement__bg { filter: none; }
-.statement--couleur::after { background:
-  linear-gradient(90deg, rgba(20,20,20,.88) 0%, rgba(20,20,20,.62) 42%, rgba(20,20,20,.15) 100%),
-  linear-gradient(0deg, rgba(20,20,20,.55), rgba(20,20,20,0) 40%); }
-@media (max-width: 959px) {
-  .statement--couleur::after { background: linear-gradient(0deg, rgba(20,20,20,.9) 0%, rgba(20,20,20,.68) 50%, rgba(20,20,20,.4) 100%); }
+.statement--couleur::after { background: linear-gradient(0deg, rgba(20,20,20,.9) 0%, rgba(20,20,20,.68) 50%, rgba(20,20,20,.4) 100%); }
+@media (min-width: 960px) {
+  .statement--couleur { background: var(--char); }
+  .statement--couleur .statement__bg { left: auto; right: 0; width: 52%; object-position: 50% 30% !important; }
+  .statement--couleur::after { left: auto; right: 0; width: 52%;
+    background: linear-gradient(90deg, var(--char) 0%, rgba(30,30,30,.55) 22%, rgba(30,30,30,0) 50%),
+                linear-gradient(0deg, rgba(30,30,30,.5), rgba(30,30,30,0) 35%); }
 }
