@@ -4,6 +4,19 @@ Objectif : créer le **site vitrine de l'entreprise AGS** (infrastructures tél�
 site du groupe S-ComPlus SARL** (https://scomplusgroup.com), réalisé précédemment dans `../SComPlus-Groupe`.
 Les échanges avec l'utilisateur se font **en français**.
 
+## État d'avancement (26/11/2026)
+
+**Les pages HTML sont maintenant générées** par `outils/generer.py` : nom, contacts, services, textes, en-tête, menu
+et pied de page sont dans ce seul fichier. Ne plus modifier les `.html` à la main : modifier `generer.py` puis
+lancer `python outils/generer.py`. Les photos/images se préparent avec `python outils/images.py`
+(photos client → `assets/img/ags/`, images Gemini déposées dans `images-ia/` sous les noms `accueil-banniere`,
+`accueil-banniere-alt`, `service-<slug>` → `assets/img/ia/`, prises en compte automatiquement à la génération).
+
+Fait : 5 pages `service-*.html` + `services.html`, grille réglée pour 5 cartes, textes AGS, photos de l'équipe
+(bannière provisoire, manifeste, bloc « projet »), logo texte et favicon provisoires, dépôt git local.
+Reste : vraies coordonnées (`À COMPLÉTER` dans `generer.py`), logo et couleurs AGS, nom complet, dirigeant,
+images IA des services, validation des textes par le client.
+
 ## Ce que fait AGS (texte fourni par l'utilisateur)
 
 Nos services à AGS :
