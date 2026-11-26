@@ -104,10 +104,10 @@ SERVICES = [
 # Équipe dirigeante (section après « Le mot du dirigeant »)
 # ---------------------------------------------------------------------------
 EQUIPE = [
-    dict(nom='M. Diouf', role='Manager', photo='assets/img/ags/diouf.webp',
+    dict(nom='M. Diouf', role='Manager', photo='assets/img/ia/diouf.webp',
          texte='Il dirige l’entreprise : relations avec les opérateurs et les partenaires, suivi des contrats '
                'et pilotage de l’ensemble des activités.'),
-    dict(nom='Samba Sidibé', role='Responsable des opérations', photo='assets/img/ags/sidibe.webp',
+    dict(nom='Samba Sidibé', role='Responsable des opérations', photo='assets/img/ia/sidibe.webp',
          texte='Il organise le travail sur le terrain : planification des interventions, coordination des '
                'équipes techniques et respect des règles de sécurité.'),
 ]
