@@ -114,13 +114,14 @@ EQUIPE = [
 
 
 def personne(p):
+    n = EQUIPE.index(p) + 1
     return f'''
       <article class="personne">
         <div class="personne__photo">{image(p["photo"], alt=f'{p["nom"]}, {p["role"]} d’{NOM}')}</div>
         <div class="personne__texte">
-          <p class="personne__role">{p["role"]}</p>
+          <span class="personne__num">{n:02d} — {p["role"]}</span>
           <h3 class="display personne__nom">{p["nom"]}</h3>
-          <p>{p["texte"]}</p>
+          <p class="personne__desc">{p["texte"]}</p>
         </div>
       </article>'''
 
