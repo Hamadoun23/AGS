@@ -18,9 +18,9 @@ RACINE = Path(__file__).resolve().parent.parent
 # ---------------------------------------------------------------------------
 NOM = 'AGS'                      # nom affiché partout (ex. « AGS SARL »)
 VILLE = 'Bamako, Mali'
-TEL_AFFICHE = '+223 00 00 00 00'  # À COMPLÉTER
-TEL_LIEN = '+22300000000'         # À COMPLÉTER (format tel:)
-WHATSAPP = '22300000000'          # À COMPLÉTER (format wa.me, sans +)
+TEL_AFFICHE = '+223 76 27 15 72'
+TEL_LIEN = '+22376271572'
+WHATSAPP = '22376271572'
 EMAIL = 'contact@ags.ml'          # À COMPLÉTER
 MESSAGE_WA = f'Bonjour {NOM}, je vous contacte depuis votre site.'
 
