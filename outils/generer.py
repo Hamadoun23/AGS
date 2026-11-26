@@ -3,6 +3,7 @@
 Usage, depuis la racine du projet :   python outils/generer.py
 
 L'en-tête, le menu et le pied de page sont communs : les modifier ici, puis relancer.
+Site en page unique (index.html) + mentions légales.
 Les images de services sont prises dans assets/img/ia/service-<slug>.webp si elles existent
 (sinon une image d'attente s'affiche) : voir outils/images.py.
 """
@@ -157,14 +158,14 @@ def entete(page):
     def lien(href, texte, cle):
         cur = ' aria-current="page"' if cle == page else ''
         return f'<a href="{href}"{cur}>{texte}</a>'
-    menu_services = ''.join(f'<a href="service-{s["slug"]}.html">{s["court"]}</a>' for s in SERVICES)
+    menu_services = ''.join(f'<a href="index.html#services">{s["court"]}</a>' for s in SERVICES)
     return f'''
   <header class="header" data-header>
     <a class="brand" href="index.html" aria-label="{NOM} — accueil">{logo()}</a>
     <nav class="nav-court" aria-label="Pages">
       {lien('index.html', 'Accueil', 'accueil')}
-      {lien('index.html#entreprise', 'L’entreprise', '')}
-      {lien('services.html', 'Services', 'services')}
+      <a href="index.html#entreprise">L’entreprise</a>
+      <a href="index.html#services">Services</a>
       <a href="#contact">Contact</a>
     </nav>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu"><span data-menu-label>Menu</span></button>
@@ -175,7 +176,7 @@ def entete(page):
       <nav class="menu__links" aria-label="Menu principal">
         <a href="index.html">Accueil</a>
         <a href="index.html#entreprise">L’entreprise</a>
-        <a href="services.html">Services</a>
+        <a href="index.html#services">Services</a>
         <a href="#contact">Contact</a>
       </nav>
       <nav class="menu__activites" aria-label="Nos services">
@@ -223,7 +224,7 @@ PIED = f'''</main>
       <a class="footer__logo brand" href="index.html" aria-label="{NOM} — accueil">{logo()}</a>
       <nav class="footer__liens" aria-label="Plan du site">
         <a href="index.html#entreprise">L’entreprise</a>
-        <a href="services.html">Services</a>
+        <a href="index.html#services">Services</a>
       </nav>
       <p class="footer__copy">© <span id="annee">2026</span> {NOM} · {VILLE} · <a href="mentions-legales.html">Mentions légales</a></p>
     </div>
@@ -239,15 +240,14 @@ PIED = f'''</main>
 
 def carte(s):
     n = SERVICES.index(s) + 1
-    return f'''<a class="acard" href="service-{s["slug"]}.html">
+    return f'''<div class="acard">
   <span class="acard__img">{img_service(s)}</span>
   <span class="acard__body">
     <span class="acard__num">{n:02d}</span>
     <b>{s["titre"]}</b>
     <span>{s["accroche"]}</span>
-    <i class="acard__fleche" aria-hidden="true">→</i>
   </span>
-</a>'''
+</div>'''
 
 
 def grille(services, petit=False):
@@ -280,7 +280,7 @@ def page_accueil():
     </h1>
     <div class="hero__side hero__in">
       <p class="small">Implantation, génie civil, montage de pylônes, maintenance et fibre optique : {NOM} réalise les infrastructures télécoms, du terrain nu jusqu’au client raccordé.</p>
-      <a class="btn btn--light" href="services.html">Découvrir nos services</a>
+      <a class="btn btn--light" href="#services">Découvrir nos services</a>
     </div>
   </div>
 </section>
@@ -368,67 +368,6 @@ def page_accueil():
             + entete('accueil') + corps + PIED)
 
 
-def page_services():
-    corps = f'''<section class="sec sec--top">
-  <div class="wrap">
-    <div class="sec__head">
-      <h1 class="display sec__title">Nos services</h1>
-      <p class="small">Cinq métiers complémentaires, une même exigence de sécurité et de qualité. Choisissez un service pour découvrir ce que nous proposons.</p>
-    </div>
-    {grille(SERVICES)}
-  </div>
-</section>
-{CONTACT}'''
-    return (tete(f'Nos services — {NOM}',
-                 f'Les services d’{NOM} : implantation des sites, maintenance, génie civil, FTTH et montage des pylônes au Mali.')
-            + entete('services') + corps + PIED)
-
-
-def page_service(s):
-    n = SERVICES.index(s) + 1
-    texte = '\n'.join(f'      <p>{p}</p>' for p in s['texte'])
-    offre = ''.join(f'<li>{o}</li>' for o in s['offre'])
-    autres = [x for x in SERVICES if x is not s]
-    img = image(f'assets/img/ia/service-{s["slug"]}.webp', lazy=False, nom_attente=f'Image à venir : {s["court"]}')
-    corps = f'''<!-- En-tête du service sur sa photo -->
-<section class="ahero">
-  <div class="ahero__img">{img}</div>
-  <div class="hero__shade"></div>
-  <div class="wrap ahero__content">
-    <p class="ahero__retour"><a href="services.html">← Tous les services</a></p>
-    <span class="ahero__num">{n:02d} / {len(SERVICES):02d}</span>
-    <h1 class="display ahero__titre">{s["titre"]}</h1>
-    <p class="ahero__accroche">{s["accroche"]}</p>
-  </div>
-</section>
-
-<section class="sec">
-  <div class="wrap adetail">
-    <div class="adetail__texte">
-      <h2 class="cv__h2">Présentation</h2>
-{texte}
-    </div>
-    <aside class="adetail__services">
-      <h2 class="cv__h2">Ce que nous proposons</h2>
-      <ul>{offre}</ul>
-      <a class="btn btn--light" href="#contact">Nous consulter</a>
-    </aside>
-  </div>
-</section>
-{CONTACT}
-<section class="sec vsec">
-  <div class="wrap">
-    <div class="sec__head">
-      <h2 class="display sec__title sec__title--m">Nos autres services</h2>
-    </div>
-    {grille(autres, petit=True)}
-  </div>
-</section>
-'''
-    return (tete(f'{s["titre"]} — {NOM}', f'{s["accroche"]} {s["titre"]} : un service d’{NOM}, au Mali.')
-            + entete('services') + corps + PIED)
-
-
 def page_mentions():
     corps = f'''<section class="sec sec--top">
   <div class="wrap texte-legal">
@@ -461,9 +400,7 @@ def page_mentions():
 
 def main():
     sys.stdout.reconfigure(encoding='utf-8')
-    pages = {'index.html': page_accueil(), 'services.html': page_services(),
-             'mentions-legales.html': page_mentions()}
-    pages.update({f'service-{s["slug"]}.html': page_service(s) for s in SERVICES})
+    pages = {'index.html': page_accueil(), 'mentions-legales.html': page_mentions()}
     for nom, html in pages.items():
         (RACINE / nom).write_text(html, encoding='utf-8', newline='\n')
         print('écrit', nom)

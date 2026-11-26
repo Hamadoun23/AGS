@@ -12,7 +12,7 @@ lancer `python outils/generer.py`. Les photos/images se préparent avec `python 
 (photos client → `assets/img/ags/`, images Gemini déposées dans `images-ia/` sous les noms `accueil-banniere`,
 `accueil-banniere-alt`, `service-<slug>` → `assets/img/ia/`, prises en compte automatiquement à la génération).
 
-Fait : 5 pages `service-*.html` + `services.html`, grille réglée pour 5 cartes, textes AGS, photos de l'équipe
+Fait : **site en page unique** (`index.html` + `mentions-legales.html`, plus de pages de services, choix du client le 26/11), grille réglée pour 5 cartes, textes AGS, photos de l'équipe
 (bannière provisoire, manifeste, bloc « projet »), logo texte et favicon provisoires, dépôt git local.
 Reste : vraies coordonnées (`À COMPLÉTER` dans `generer.py`), logo et couleurs AGS, nom complet, dirigeant,
 images IA des services, validation des textes par le client.
